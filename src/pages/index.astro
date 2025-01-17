@@ -1,5 +1,6 @@
 ---
 import Header from "../components/Header.astro";
+import Base from '../layouts/Base.astro';
 ---
 
 <!doctype html>
@@ -11,10 +12,9 @@ import Header from "../components/Header.astro";
         <title>Accueil</title>
     </head>
     <body>
-        <header>
-            <Header />
-        </header>
-        <h1>Accueil</h1>
+        <Base titre="Accueil">
+            <h1>Accueil</h1> <!-- ou "Offres" pour la page des offres -->
+        </Base>
     </body>
 </html>
 
