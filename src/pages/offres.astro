@@ -13,7 +13,7 @@ const offres = [
         "nomMaison": "Beverly Springfield",
         "prix": 2700,
         "surface": 45,
-        "imgUrl": "image1.png"
+        "imgUrl": "image1.jpg"
     },
     {
         "adresse": "2699 Green Valley, Highland Lake",
@@ -24,7 +24,7 @@ const offres = [
         "nomMaison": "Palm Harbor",
         "prix": 2095,
         "surface": 42,
-        "imgUrl": "image2.png"
+        "imgUrl": "image2.jpg"
     },
     {
         "adresse": "909 Woodland St, Michigan, IN",
@@ -35,7 +35,7 @@ const offres = [
         "nomMaison": "Faulkner Ave",
         "prix": 4550,
         "surface": 80,
-        "imgUrl": "image3.png"
+        "imgUrl": "image3.jpg"
     }
 ]
 ---
@@ -48,8 +48,39 @@ const offres = [
         <title>Offres</title>
     </head>
     <body>
-        <Base titre="Accueil">
-            <h1>Accueil</h1> <!-- ou "Offres" pour la page des offres -->
+            <Base titre="Offres">
+
+
+                <div x-data="{ showFavorites: false }">
+                    <button @click="showFavorites = !showFavorites">
+                        <span x-show="!showFavorites">Afficher les favoris</span>
+                        <span x-show="showFavorites">Afficher tout</span>
+                    </button>
+                    <div class="bg-white" x-show="!showFavorites">
+        
+                        { offres.map((offre) => 
+                          <ul>
+                          <li>
+        
+                            <Card {...offre} />
+                          </li>
+                          </ul> 
+                        )
+                    }
+                    </div>
+                    <div class="bg-white" x-show="showFavorites">
+                        { offres.map((offre) => 
+                            <ul>
+                            <li>
+        
+                             {offre.favori && <Card {...offre} />}
+                            </li>
+                            </ul> 
+                          )
+                        }
+                    </div>
+                </div>
+        
         </Base>
         <div>
             { offres.map((element) => 

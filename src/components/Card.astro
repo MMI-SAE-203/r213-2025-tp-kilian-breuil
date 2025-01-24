@@ -1,9 +1,9 @@
 ---
-const {element} = Astro.props;
+const {...element} = Astro.props;
 ---
 <div class="bg-gray-100">
     <div>
-        <img src={element.imgUrl} alt="">
+        <img class="max-w-md " src={element.imgUrl} alt="">
     </div>
     <ul>
     <li>{element.nomMaison}</li>
