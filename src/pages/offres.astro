@@ -1,7 +1,8 @@
 ---
 import { array } from "astro:schema";
-import Header from "../components/Header.astro";
+import Header from "../components/header.astro";
 import Base from '../layouts/Base.astro';
+import Card from "../components/Card.astro";
 const offres = [
     {
         "adresse": "2821 Lake Sevilla, Palm Harbor, TX",
@@ -52,11 +53,7 @@ const offres = [
         </Base>
         <div>
             { offres.map((element) => 
-                  <ul>
-                  <li>
-                    {element.nomMaison}
-                  </li>
-                  </ul>  // afficher les nom des maisons sous forme de liste <ul>.
+            <Card {...element}/>
                 )
             }
             </div>
