@@ -48,24 +48,19 @@ const offres = [
         <title>Offres</title>
     </head>
     <body>
-<div x-data="{showFavorites: false}">
-    <button>
-        <span x-show="!showFavorites">Afficher les favoris</span>
-        <span x-show="showFavorites">Afficher tout</span>
-    </button>
+        <div x-data="{showFavorites: false}">
+            <button x-on:click="showFavorites = !showFavorites">
+                <span x-show="!showFavorites">Afficher les favoris</span>
+                <span x-show="showFavorites">Afficher tout</span>
+            </button>
 
-    <div x-show="!showFavorites">
-        {offres.map((offre) => <Card {offre} />)}
-    </div>
-    <div x-show="showFavorites">
-        {offres.map((offre) => offre.favori && <Card {offre} />)}
-    </div>
-</div>
-        <div>
-            { offres.map((offre) => 
-            <Card {...offre}/>
-                )
-            }
+            <div x-show="!showFavorites">
+                {offres.map((offre) => <Card {...offre} />)}
             </div>
+            <div x-show="showFavorites">
+                {offres.map((offre) => offre.favori && <Card {...offre} />)}
+            </div>
+        </div>
+            
     </body>
 </html>
