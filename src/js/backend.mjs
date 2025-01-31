@@ -7,7 +7,7 @@ export async function getOffres() {
         let data = await db.collection('maison').getFullList({
         });
         data = data.map((d) => {
-            d.img = db.files.getURL(d, d.field);
+            d.field = db.files.getURL(d, d.field);
             return d;
         });
         return data;
