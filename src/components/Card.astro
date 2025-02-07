@@ -12,5 +12,6 @@ const {...element} = Astro.props;
     <li>{element.nbSdb} salle de bains</li>
     <li>{element.prix} €</li>
     <li>{element.surface} m²</li>
+    <a href={`/offres/${element.id}`}>Voir plus</a>
     </ul>
 </div>
