@@ -27,3 +27,14 @@ export async function getOffre(id) {
         return null;
     }
 }
+export async function getSurface() {
+    try {
+        let data = await pb.collection('Maison').getFullList({
+            filter: `surface > ${surface}`,
+            sort: '-created',
+        });
+    } catch (error) {
+        console.log('Une erreur est survenue en lisant la liste des maisons avec une surface supérieure à demandé', error);
+        return [];
+    }
+}
