@@ -6,7 +6,7 @@ import Card from "../../components/Card.astro";
 import { getOffres } from "../../js/backend.mjs";
 
 const offres = await getOffres();
-
+import Add from '../offres/add.astro';
 ---
 <!doctype html>
 <html lang="en">
@@ -17,6 +17,7 @@ const offres = await getOffres();
         <title>Offres</title>
     </head>
     <body>
+        <a href="/offres/add">Ajouter une offre</a>
         <div x-data="{showFavorites: false}">
             <button x-on:click="showFavorites = !showFavorites">
                 <span x-show="!showFavorites">Afficher les favoris</span>
@@ -30,6 +31,6 @@ const offres = await getOffres();
                 {offres.map((offre) => offre.favori && <Card {...offre} />)}
             </div>
         </div>
-            
+
     </body>
 </html>
