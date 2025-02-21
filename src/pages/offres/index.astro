@@ -4,10 +4,10 @@ import { array } from "astro:schema";
 import Header from "../../components/header.astro";
 import Base from '../../layouts/Base.astro';
 import Card from "../../components/Card.astro";
-import { getOffres } from "../../js/backend.mjs";
+import { getOffre } from "../../js/backend.mjs";
 import { filterByPrix } from "../../js/backend.mjs";
 
-let offres = await getOffres();
+let offres = await getOffre();
 import Add from '../offres/add.astro';
 let message = '';
 if (Astro.request.method === "POST") {
@@ -26,7 +26,7 @@ if (Astro.request.method === "POST") {
         message = "Veuillez entrer des valeurs valides pour le prix.";
     }
 } else {
-    offres = await getOffres();
+    offres = await getOffre();
 }
 ---
 <!doctype html>

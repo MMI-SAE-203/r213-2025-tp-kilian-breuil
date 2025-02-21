@@ -1,9 +1,15 @@
 ---
-const {...element} = Astro.props;
+const { offre, ...element } = Astro.props;
 ---
-<div class="bg-gray-100">
+
+<div class="bg-gray-100" x-data={`{favori: ${offre.favori}, clickFavori() {this.favori = !this.favori; setFavori(${JSON.stringify(offre)});}}`}>
     <div>
         <img class="max-w-md " src={element.field} alt="">
+        <script>
+            //@ts-nocheck
+            import { setFavori } from "@src/backend";
+            window.setFavori = setFavori;
+        </script>
     </div>
     <ul>
     <li>{element.nomMaison}</li>
@@ -13,5 +19,9 @@ const {...element} = Astro.props;
     <li>{element.prix} €</li>
     <li>{element.surface} m²</li>
     <a href={`/offres/${element.id}`}>Voir plus</a>
+    <button class="absolute bottom-0 left-0 p-2 text-white rounded-br-lg" @click="clickFavori">
+        <img :src="favori ? 'favorite_filled.png' : 'favorite.png'" alt="Favorite Icon" class="w-6 h-6" />
+    </button>
     </ul>
 </div>
+

@@ -2,7 +2,7 @@ import PocketBase from 'pocketbase';
 
 const pb = new PocketBase('http://127.0.0.1:8090');
 
-export async function getOffres() {
+export async function getOffre() {
     try {
         let data = await pb.collection('maison').getFullList({
         });
@@ -17,7 +17,7 @@ export async function getOffres() {
     }
 }
 
-export async function getOffres(id) {
+export async function getOffre(id) {
     try {
         let data = await pb.collection('maison').getOne(id);
         data.imageUrl = pb.files.getURL(data, data.image);
@@ -40,21 +40,21 @@ export async function getSurface() {
     }
 }
 
-// export async function addOffre(house) {
-//     try {
-//         await pb.collection('maison').create(house);
-//         return {
-//             success: true,
-//             message: 'Offre ajoutée avec succès'
-//         };
-//     } catch (error) {
-//         console.log('Une erreur est survenue en ajoutant la maison', error);
-//         return {
-//             success: false,
-//             message: 'Une erreur est survenue en ajoutant la maison'+ error
-//         };
-//     }
-// }
+export async function addOffre(house) {
+    try {
+        await pb.collection('maison').create(house);
+        return {
+            success: true,
+            message: 'Offre ajoutée avec succès'
+        };
+    } catch (error) {
+        console.log('Une erreur est survenue en ajoutant la maison', error);
+        return {
+            success: false,
+            message: 'Une erreur est survenue en ajoutant la maison'+ error
+        };
+    }
+}
 
 export async function filterByPrix(prixMin, prixMax) {
     try {
@@ -92,4 +92,8 @@ export async function getAgent(id) {
         console.log('Une erreur est survenue en lisant la maison', error);
         return null;
     }
+}
+
+export async function setFavori(house) {
+    await pb.collection('maison').update(house.id, {favori: !house.favori});
 }
