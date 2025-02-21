@@ -1,0 +1,10 @@
+---
+const {nom, prenom, email, id} = Astro.props;
+---
+<div class="bg-gray-100">
+    <ul>
+    <li>{nom}</li>
+    <li>{prenom}</li>
+    <li>{email}</li>
+    <a href={`/agent/${id}`}>Voir plus</a>
+    </ul>

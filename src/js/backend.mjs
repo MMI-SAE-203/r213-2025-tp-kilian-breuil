@@ -17,16 +17,17 @@ export async function getOffres() {
     }
 }
 
-export async function getOffre(id) {
+export async function getOffres(id) {
     try {
         let data = await pb.collection('maison').getOne(id);
         data.imageUrl = pb.files.getURL(data, data.image);
         return data;
-    } catch (error) {
-        console.log('Une erreur est survenue en lisant la maison', error);
-        return null;
+        } catch (error) {
+            console.log('Une erreur est survenue en lisant la maison', error);
+            return null;
+        }
     }
-}
+
 export async function getSurface() {
     try {
         let data = await pb.collection('Maison').getFullList({
@@ -39,21 +40,21 @@ export async function getSurface() {
     }
 }
 
-export async function addOffre(house) {
-    try {
-        await pb.collection('maison').create(house);
-        return {
-            success: true,
-            message: 'Offre ajoutée avec succès'
-        };
-    } catch (error) {
-        console.log('Une erreur est survenue en ajoutant la maison', error);
-        return {
-            success: false,
-            message: 'Une erreur est survenue en ajoutant la maison'+ error
-        };
-    }
-}
+// export async function addOffre(house) {
+//     try {
+//         await pb.collection('maison').create(house);
+//         return {
+//             success: true,
+//             message: 'Offre ajoutée avec succès'
+//         };
+//     } catch (error) {
+//         console.log('Une erreur est survenue en ajoutant la maison', error);
+//         return {
+//             success: false,
+//             message: 'Une erreur est survenue en ajoutant la maison'+ error
+//         };
+//     }
+// }
 
 export async function filterByPrix(prixMin, prixMax) {
     try {
@@ -68,5 +69,27 @@ export async function filterByPrix(prixMin, prixMax) {
     } catch (error) {
         console.log('Une erreur est survenue en filtrant la liste des maisons', error);
         return [];
+    }
+}
+
+export async function getAgents() {
+    try {
+        let agent = await pb.collection('agent').getFullList({
+        });
+        return agent;
+    } catch (error) {
+        console.log('Une erreur est survenue en lisant la liste des maisons', error);
+        return [];
+    }
+}
+
+export async function getAgent(id) {
+    try {
+        let data = await pb.collection('agent').getOne(id);
+        // data.imageUrl = pb.files.getURL(data, data.image);
+        return data;
+    } catch (error) {
+        console.log('Une erreur est survenue en lisant la maison', error);
+        return null;
     }
 }

@@ -1,0 +1,39 @@
+---
+import { getAgents } from '../../js/backend.mjs';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/header.astro';
+let agent = await getAgents();
+import Cardagent from "../../components/cardagent.astro";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <title>Agents</title>
+    </head>
+    <body>
+        <form action="/offres" method="POST">
+            <input type="number" name="minPrix" placeholder="Prix minimum" />
+            <input type="number" name="maxPrix" placeholder="Prix maximum" />
+            <input type="submit" value="Filtrer par prix" />
+        </form>
+        <a href="/offres/add">Ajouter une offre</a>
+        <div x-data="{showFavorites: false}">
+            <button x-on:click="showFavorites = !showFavorites">
+                <span x-show="!showFavorites">Afficher les favoris</span>
+                <span x-show="showFavorites">Afficher tout</span>
+            </button>
+
+            <div x-show="!showFavorites">
+                {agent.map((agent) => <Cardagent {...agent} />)}
+            </div>
+            <div x-show="showFavorites">
+                {agent.map((Agents) => Agents.favori && <Cardagent {...Agents} />)}
+            </div>²
+        </div>
+
+    </body>
+</html>
